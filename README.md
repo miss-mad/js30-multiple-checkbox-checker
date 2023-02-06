@@ -9,11 +9,11 @@
 
 ## Description
 
-Created with only Vanilla JavaScript.
+This is an ordinary list with an upgraded feature: check multiple list items at once while holding the shift key. Created with only Vanilla JavaScript.
 
 ## Usage
 
-![Checkbox screenshot 1](./assets/images)
+![Checkbox screenshot 1](./assets/images/checkboxes_screenshot.png)
 
 ## Credits
 

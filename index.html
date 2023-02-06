@@ -13,54 +13,10 @@
       href="./assets/images/checkboxes_screenshot.png"
       alt="Checkboxes icon"
     />
+    <link rel="stylesheet" href="./assets/develop/style.css" />
     <title>Hold Shift to Check Multiple Checkboxes</title>
   </head>
   <body>
-    <style>
-      html {
-        font-family: sans-serif;
-        background: #275503;
-      }
-
-      .inbox {
-        max-width: 400px;
-        margin: 50px auto;
-        background: antiquewhite;
-        border-radius: 5px;
-        box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
-      }
-
-      .item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #144291;
-      }
-
-      .item:last-child {
-        border-bottom: 0;
-      }
-
-      input:checked + label {
-        background: antiquewhite;
-        text-decoration: line-through;
-      }
-
-      input[type="checkbox"] {
-        margin: 20px;
-      }
-
-      label {
-        margin: 0;
-        padding: 20px;
-        transition: background 0.2s;
-        flex: 1;
-        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-        font-size: 20px;
-        font-weight: 200;
-        border-left: 1px solid #144291;
-      }
-    </style>
-
     <div class="inbox">
       <div class="item">
         <input type="checkbox" />
@@ -96,32 +52,6 @@
       </div>
     </div>
 
-    <script>
-      const checkboxes = document.querySelectorAll(
-        '.inbox input[type="checkbox"]'
-      );
-      let lastChecked;
-
-      function handleCheck(e) {
-        let inBetween = false;
-
-        if (e.shiftKey && this.checked) {
-          checkboxes.forEach((checkbox) => {
-            if (checkbox === this || checkbox === lastChecked) {
-              inBetween = !inBetween;
-            }
-
-            if (inBetween) {
-              checkbox.checked = true;
-            }
-          });
-        }
-        lastChecked = this;
-      }
-
-      checkboxes.forEach((checkbox) =>
-        checkbox.addEventListener("click", handleCheck)
-      );
-    </script>
+    <script src="./assets/develop/script.js"></script>
   </body>
 </html>
