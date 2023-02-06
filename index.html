@@ -10,23 +10,22 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="./assets/images/"
+      href="./assets/images/checkboxes_screenshot.png"
       alt="Checkboxes icon"
     />
-    <link rel="stylesheet" href="./assets/develop/style.css" />
     <title>Hold Shift to Check Multiple Checkboxes</title>
   </head>
   <body>
     <style>
       html {
         font-family: sans-serif;
-        background: #ffc600;
+        background: #275503;
       }
 
       .inbox {
         max-width: 400px;
         margin: 50px auto;
-        background: white;
+        background: antiquewhite;
         border-radius: 5px;
         box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
       }
@@ -34,15 +33,15 @@
       .item {
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid #144291;
       }
 
       .item:last-child {
         border-bottom: 0;
       }
 
-      input:checked + p {
-        background: #f9f9f9;
+      input:checked + label {
+        background: antiquewhite;
         text-decoration: line-through;
       }
 
@@ -50,62 +49,79 @@
         margin: 20px;
       }
 
-      p {
+      label {
         margin: 0;
         padding: 20px;
         transition: background 0.2s;
         flex: 1;
-        font-family: "helvetica neue";
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
         font-size: 20px;
         font-weight: 200;
-        border-left: 1px solid #d1e2ff;
+        border-left: 1px solid #144291;
       }
     </style>
-    <!--
-   The following is a common layout you would see in an email client.
 
-   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
-
-  -->
     <div class="inbox">
       <div class="item">
         <input type="checkbox" />
-        <p>This is an inbox layout.</p>
+        <label>This is an ordinary list</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Check one item</p>
+        <label>With an upgraded feature</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Hold down your Shift key</p>
+        <label>Check one item</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Check a lower item</p>
+        <label>Hold down your Shift key</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Everything in between should also be set to checked</p>
+        <label>Check another item</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Try to do it without any libraries</p>
+        <label>Now all items in between are checked</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Just regular JavaScript</p>
+        <label>Works both forwards and backwards</label>
       </div>
       <div class="item">
         <input type="checkbox" />
-        <p>Good Luck!</p>
-      </div>
-      <div class="item">
-        <input type="checkbox" />
-        <p>Don't forget to tweet your result!</p>
+        <label>Enjoy!</label>
       </div>
     </div>
 
-    <script></script>
+    <script>
+      const checkboxes = document.querySelectorAll(
+        '.inbox input[type="checkbox"]'
+      );
+      let lastChecked;
+
+      function handleCheck(e) {
+        let inBetween = false;
+
+        if (e.shiftKey && this.checked) {
+          checkboxes.forEach((checkbox) => {
+            if (checkbox === this || checkbox === lastChecked) {
+              inBetween = !inBetween;
+            }
+
+            if (inBetween) {
+              checkbox.checked = true;
+            }
+          });
+        }
+        lastChecked = this;
+      }
+
+      checkboxes.forEach((checkbox) =>
+        checkbox.addEventListener("click", handleCheck)
+      );
+    </script>
   </body>
 </html>
